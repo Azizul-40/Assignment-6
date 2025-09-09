@@ -1,3 +1,4 @@
+let price = 0;
 const loadCategory = () => {
     fetch("https://openapi.programming-hero.com/api/categories")
     .then(res => res.json())
@@ -69,13 +70,12 @@ const displayPlants = (plants) => {
     let html = '';
     
     plants.forEach(plant => {
-
         html += `
         <div class="card bg-white rounded-lg shadow-md overflow-hidden max-h-fit">
             <figure class="h-48">
                 <img 
-                    alt=${plant.name} 
-                    src=${plant.image}
+                    alt="${plant.name}" 
+                    src="${plant.image}"
                     class="w-full h-full object-cover"
                 /> 
             </figure>
@@ -90,17 +90,38 @@ const displayPlants = (plants) => {
                     ${plant.category}
                 </span>
                 <span class="font-bold text-lg text-slate-900 flex items-center">
-                    <i class="fas fa-taka-sign mr-1"></i>
                     ৳${plant.price}
                 </span>
             </div>
-            <button id="${plant.id}-add-card" class="m-6  bg-[#1f6f3d] text-white text-lg font-normal rounded-full py-3 hover:bg-[#1a5c31] transition-colors" type="button">
+            <button onclick="addToCard(${plant.id}, '${plant.name}', ${plant.price})" class="add-to-card-btn m-6 bg-[#1f6f3d] text-white text-lg font-normal rounded-full py-3 hover:bg-[#1a5c31] transition-colors" type="button">
                 Add to Cart
             </button>
         </div>
         `;
     });
+    
     productGrid.innerHTML = html;
+}
+
+const addToCard = (id, name, price) => {
+    const showCardSec = document.getElementById("add-to-card");
+    const totalPriceElement = document.getElementById("total-price");
+    
+    // Create a new cart item
+    const newDiv = document.createElement('div');
+    newDiv.className = 'flex justify-between items-center bg-green-100 p-2 rounded mb-2';
+    newDiv.innerHTML = `
+        <span>${name}</span>
+        <span>৳${price}</span>   
+    `;
+    
+    // Add to cart
+    showCardSec.appendChild(newDiv);
+    
+    // Update total price
+    const currentTotal = parseFloat(totalPriceElement.innerText.replace('৳', '')) || 0;
+    const newTotal = currentTotal + price;
+    totalPriceElement.innerText = `৳${newTotal}`;
 }
 
 // Initialize the page

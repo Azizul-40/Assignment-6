@@ -66,38 +66,31 @@
 <section id="main" class="grid grid-cols-1 sm:grid-cols-5 gap-6 w-11/12 mx-auto p-4">
     <!-- <!- Categories Sidebar --> 
     <div  id="left" class="bg-[#E8F5E9] p-4 rounded-lg lg:col-span-1 space-y-4 text-xl">
-        <!-- <h2 class="text-2xl font-bold text-black">Categories</h2>
-        <li class="list-none hover:text-white  hover:bg-green-500 rounded-md px-3 py-2">All Trees</li> -->
-        <!-- <ul>
-            <li class="list-none px-3 py-2 hover:bg-green-500 hover:text-white rounded-md cursor-pointer">mange</li>
-            <li class="list-none px-3 py-2 hover:bg-green-500 hover:text-white rounded-md cursor-pointer">wood</li>
-            <li class="list-none px-3 py-2 hover:bg-green-500 hover:text-white rounded-md cursor-pointer">flower</li>
-        </ul> -->
+        <!-- category will update here via js -->
 
     </div>  
 
 
     <!-- Product Grid -->
     <main  id="product-grid" class="sm:col-span-3 grid grid-cols-1 sm:grid-cols-3 gap-6">
-        <!-- Example Product Card -->
-         
-        <!-- Repeat more cards as needed -->
+        <!-- data card will fetch & show here -->
     </main>
 
     <!-- Cart Sidebar -->
     <aside class="bg-[#F1F8E9] p-4 rounded-lg lg:col-span-1">
         <h2 class="text-lg font-bold mb-4">Your Cart</h2>
-        <div class="space-y-2">
-            <div class="flex justify-between items-center bg-green-100 p-2 rounded">
-                <span>Mango Tree</span>
-                <span>৳500 × 1</span>
-            </div>
-            <div class="flex justify-between items-center bg-green-100 p-2 rounded">
-                <span>Guava Tree</span>
-                <span>৳500 × 1</span>
-            </div>
+        <div id="add-to-card" class="space-y-2">
+            <!-- item , price will show here -->
         </div>
-        <p class="mt-4 font-bold">Total: ৳1000</p>
+        <div class="flex">
+            <p class="mt-4 mr-4 font-bold">
+                Total : 
+            </p>
+            <p id="total-price" class="mt-4 font-bold">
+                <!-- total price will show here -->
+            </p>
+        </div>
+
     </aside>
 </section>
 
@@ -191,6 +184,6 @@
 
      </header>
     
-    <script src="js/loaddata.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
