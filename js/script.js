@@ -79,7 +79,7 @@ const displayPlants = (plants) => {
                     class="w-full h-full object-cover"
                 /> 
             </figure>
-            <h2 class="mt-4 font-semibold text-lg text-slate-900 px-6">
+            <h2 class="mt-4 font-semibold text-lg text-slate-900 px-6 cursor-pointer">
                 ${plant.name}
             </h2>
             <p class="mt-1 text-slate-600 text-sm leading-relaxed px-6">
@@ -110,8 +110,10 @@ const addToCard = (id, name, price) => {
     // Create a new cart item
     const newDiv = document.createElement('div');
     newDiv.className = 'flex justify-between items-center bg-green-100 p-2 rounded mb-2';
+    newDiv.id = `cart-item-${id}`;
     newDiv.innerHTML = `
         <span>${name}</span>
+        <span onclick="removeFromCard('cart-item-${id}', ${price})" class="cursor-pointer text-red-500 hover:text-red-700">❌</span>
         <span>৳${price}</span>   
     `;
     
@@ -122,6 +124,21 @@ const addToCard = (id, name, price) => {
     const currentTotal = parseFloat(totalPriceElement.innerText.replace('৳', '')) || 0;
     const newTotal = currentTotal + price;
     totalPriceElement.innerText = `৳${newTotal}`;
+}
+
+const removeFromCard = (itemId, price) => {
+    const itemToRemove = document.getElementById(itemId);
+    const totalPriceElement = document.getElementById("total-price");
+    
+    if (itemToRemove) {
+        // Remove the item from the cart
+        itemToRemove.remove();
+        
+        // Update total price by subtracting the removed item's price
+        const currentTotal = parseFloat(totalPriceElement.innerText.replace('৳', '')) || 0;
+        const newTotal = currentTotal - price;
+        totalPriceElement.innerText = `৳${newTotal}`;
+    }
 }
 
 // Initialize the page
